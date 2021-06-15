@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+
+{% block title %} <title>user profile</title>{% endblock %}
+
+
+{% block body %}
+
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">User name: {{user.username}}</h5>
+    <p class="card-text">Дата регистрации: {{user.date_joined|date:'Y-m-d'}}</p>
+      <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Информация</h5>
+            <p class="card-text">email: {{user.email}}</p>
+            <p class="card-text">ФИО: {{user.first_name}} {{user.last_name}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Все посты</h5>
+            <p class="card-text">
+                  <ul class="list-group list-group-flush">
+                      {% for post in posts %}
+                    <li class="list-group-item"><a href="/view/{{post.id}}">{{post.title}}</a></li>
+                      {% endfor %}
+                  </ul></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

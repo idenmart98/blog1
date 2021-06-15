@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+
+{% block title %} <title>Login page</title>{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+
+<main class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: auto;">
+
+    <form method="post">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+        {{ form }}
+
+        <div class="mb-3 mt-3">
+          <label>
+              Уже зарегистрированы? <a href="/login">Login</a>
+          </label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+    </form>
+
+</main>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
