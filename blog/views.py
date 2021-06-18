@@ -87,8 +87,9 @@ class SearchView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('query', None)
+        result = []
         if query is None:
-            return render(self.request, 'blog/search.html')
+            return result
         result = self.model.objects.filter(Q(title__icontains=query) |
                                     Q(clipped_text__icontains=query) |
                                     Q(text__icontains=query))
