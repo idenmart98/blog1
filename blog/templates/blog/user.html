@@ -25,7 +25,7 @@
             <h5 class="card-title">Все посты</h5>
             <p class="card-text">
                   <ul class="list-group list-group-flush">
-                      {% for post in posts %}
+                      {% for post in request.user.post_set.all %}
                     <li class="list-group-item"><a href="/view/{{post.id}}">{{post.title}}</a></li>
                       {% endfor %}
                   </ul></p>

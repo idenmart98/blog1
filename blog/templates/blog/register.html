@@ -6,6 +6,12 @@
 
 {% block body %}
 
+{% if registred %}
+    <div class="alert alert-primary" role="alert">
+        Вы зарегистрированы
+    </div>
+{% endif %}
+
 <main class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: auto;">
 
     <form method="post">

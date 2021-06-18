@@ -1,5 +1,8 @@
 from django import forms
 from .models import Post
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 inputAttrs = {
@@ -7,7 +10,7 @@ inputAttrs = {
 }
 
 
-class LoginForm(forms.Form):
+class LoginForm(forms.ModelForm):
     username = forms.CharField(
         label='Username',
         max_length=100,
@@ -18,14 +21,15 @@ class LoginForm(forms.Form):
         max_length=64,
         widget=forms.PasswordInput(attrs=inputAttrs)
     )
+    class Meta:
+        model = User
+        fields = ['username','password']
 
 
-class RegisterForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs=inputAttrs))
-    password = forms.CharField(widget=forms.PasswordInput(attrs=inputAttrs))
-    firstName = forms.CharField(widget=forms.TextInput(attrs=inputAttrs))
-    lastName = forms.CharField(widget=forms.TextInput(attrs=inputAttrs))
-    email = forms.CharField(widget=forms.EmailInput(attrs=inputAttrs))
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','password','email','first_name', 'last_name']
 
 
 class CommentForms(forms.Form):
@@ -35,7 +39,7 @@ class CommentForms(forms.Form):
 class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'clipped_text', 'text']
+        fields = ['title', 'clipped_text', 'text', 'category']
         widgets = {
             'clipped_text': forms.Textarea(attrs={'rows': 3}),
         }

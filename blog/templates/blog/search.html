@@ -13,7 +13,9 @@
     {% if result %}
         <div class="list-group">
             {% for res in result %}
-                <a href="/view/{{res.id}}" class="list-group-item list-group-item-action">{{res.title}}</a>
+                {% if res %}
+                    <a href="{% url 'blog:detail' pk=res.id %}" class="list-group-item list-group-item-action">{{res.title}}</a>
+                {% endif %}
             {% endfor %}
         </div>
     {% endif %}
